@@ -1,0 +1,64 @@
+{
+  "name": "n8n-nodes-wabot",
+  "version": "0.1.1",
+  "description": "Wabot Community Nodes for n8n — credentials + action nodes (send text, media, groups, labels, contacts).",
+  "keywords": [
+    "n8n",
+    "nodes",
+    "wabot",
+    "whatsapp",
+    "n8n-community-node-package"
+  ],
+  "homepage": "https://github.com/webinfinitebr/n8n-nodes-wabot",
+  "license": "MIT",
+  "author": "Web Infinite (Élisson)",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "clean": "rimraf dist || true",
+    "lint": "echo \"No lint configured\""
+  },
+  "devDependencies": {
+    "@types/node": "^18.19.0",
+    "typescript": "^5.4.0",
+    "rimraf": "^5.0.0"
+  },
+  "dependencies": {
+    "n8n-workflow": "^1.47.0",
+    "n8n-core": "^1.47.0"
+  },
+  "n8n": {
+    "credentials": [
+      "dist/credentials/WabotApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/Wabot/WabotSendText.node.js",
+      "dist/nodes/Wabot/WabotSendMedia.node.js",
+      "dist/nodes/Wabot/WabotSendGroupText.node.js",
+      "dist/nodes/Wabot/WabotSendGroupMedia.node.js",
+      "dist/nodes/Wabot/WabotGroupAddNumber.node.js",
+      "dist/nodes/Wabot/WabotGroupRemoveNumber.node.js",
+      "dist/nodes/Wabot/WabotContactGroupAdd.node.js",
+      "dist/nodes/Wabot/WabotContactGroupRemove.node.js",
+      "dist/nodes/Wabot/WabotLabelAdd.node.js",
+      "dist/nodes/Wabot/WabotLabelRemove.node.js"
+    ]
+  },
+  "files": [
+    "dist",
+    "icons",
+    "README.md",
+    "LICENSE",
+    "package.json",
+    "tsconfig.json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webinfinitebr/n8n-nodes-wabot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/webinfinitebr/n8n-nodes-wabot/issues"
+  }
+}
