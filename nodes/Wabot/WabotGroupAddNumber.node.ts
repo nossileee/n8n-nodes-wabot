@@ -17,7 +17,6 @@ export class WabotGroupAddNumber implements INodeType {
     properties: [
       { displayName: 'Group ID (without @g.us)', name: 'groupId', type: 'string', default: '', required: true, description: 'Provide only the numeric part; @g.us is appended automatically' },
       { displayName: 'Number', name: 'number', type: 'string', default: '', required: true },
-      
     ],
   };
 
@@ -28,7 +27,7 @@ export class WabotGroupAddNumber implements INodeType {
       const body: any = {
         group_id: `${this.getNodeParameter('groupId', i) as string}@g.us`,
         action: 'add',
-        number: this.getNodeParameter('number', i) as string) as string,
+        number: this.getNodeParameter('number', i) as string,
       };
       const resp = await wabotRequest.call(this, 'POST', '/group_action', body);
       returnData.push(resp);

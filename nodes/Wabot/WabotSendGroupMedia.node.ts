@@ -19,7 +19,6 @@ export class WabotSendGroupMedia implements INodeType {
       { displayName: 'Media URL', name: 'mediaUrl', type: 'string', default: '', required: true },
       { displayName: 'Filename', name: 'filename', type: 'string', default: '', required: true },
       { displayName: 'Message', name: 'message', type: 'string', typeOptions: { rows: 3 }, default: '' },
-      
     ],
   };
 
@@ -32,7 +31,7 @@ export class WabotSendGroupMedia implements INodeType {
         type: 'media',
         media_url: this.getNodeParameter('mediaUrl', i) as string,
         filename: this.getNodeParameter('filename', i) as string,
-        message: this.getNodeParameter('message', i) as string) as string,
+        message: this.getNodeParameter('message', i) as string,
       };
       const resp = await wabotRequest.call(this, 'POST', '/send_group', body);
       returnData.push(resp);

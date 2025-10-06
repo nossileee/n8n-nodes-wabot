@@ -18,7 +18,6 @@ class WabotSendGroupText {
             properties: [
                 { displayName: 'Group ID', name: 'groupId', type: 'string', default: '', required: true, description: 'Group JID (e.g. 1203630...@g.us)' },
                 { displayName: 'Message', name: 'message', type: 'string', typeOptions: { rows: 4 }, default: '', required: true },
-                {  type: 'string', default: '', required: true },
             ],
         };
     }
@@ -29,7 +28,7 @@ class WabotSendGroupText {
             const body = {
                 group_id: this.getNodeParameter('groupId', i),
                 type: 'text',
-                message: this.getNodeParameter('message', i)),
+                message: this.getNodeParameter('message', i),
             };
             const resp = await GenericFunctions_1.wabotRequest.call(this, 'POST', '/send_group', body);
             returnData.push(resp);

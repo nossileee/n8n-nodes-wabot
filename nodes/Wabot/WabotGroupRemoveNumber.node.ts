@@ -17,7 +17,6 @@ export class WabotGroupRemoveNumber implements INodeType {
     properties: [
       { displayName: 'Group ID (without @g.us)', name: 'groupId', type: 'string', default: '', required: true },
       { displayName: 'Number', name: 'number', type: 'string', default: '', required: true },
-      
     ],
   };
 
@@ -28,7 +27,7 @@ export class WabotGroupRemoveNumber implements INodeType {
       const body: any = {
         group_id: `${this.getNodeParameter('groupId', i) as string}@g.us`,
         action: 'remove',
-        number: this.getNodeParameter('number', i) as string) as string,
+        number: this.getNodeParameter('number', i) as string,
       };
       const resp = await wabotRequest.call(this, 'POST', '/group_action', body);
       returnData.push(resp);

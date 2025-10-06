@@ -18,7 +18,6 @@ class WabotLabelAdd {
             properties: [
                 { displayName: 'Label ID', name: 'labelId', type: 'string', default: '', required: true },
                 { displayName: 'Number', name: 'number', type: 'string', default: '', required: true },
-                {  type: 'string', default: '', required: true },
             ],
         };
     }
@@ -29,7 +28,7 @@ class WabotLabelAdd {
             const body = {
                 label_id: this.getNodeParameter('labelId', i),
                 action: 'add',
-                number: this.getNodeParameter('number', i)),
+                number: this.getNodeParameter('number', i),
             };
             const resp = await GenericFunctions_1.wabotRequest.call(this, 'POST', '/label_action', body);
             returnData.push(resp);

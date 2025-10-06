@@ -32,7 +32,6 @@ export class WabotSendText implements INodeType {
         required: true,
         description: 'Text content',
       },
-      
     ],
   };
 
@@ -43,7 +42,7 @@ export class WabotSendText implements INodeType {
       const body: any = {
         number: this.getNodeParameter('number', i) as string,
         type: 'text',
-        message: this.getNodeParameter('message', i) as string) as string,
+        message: this.getNodeParameter('message', i) as string,
       };
       const resp = await wabotRequest.call(this, 'POST', '/send', body);
       returnData.push(resp);

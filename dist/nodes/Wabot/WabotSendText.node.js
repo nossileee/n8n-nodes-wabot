@@ -33,13 +33,6 @@ class WabotSendText {
                     required: true,
                     description: 'Text content',
                 },
-                {
-                    
-                    type: 'string',
-                    default: '',
-                    required: true,
-                    description: 'Wabot instance ID',
-                },
             ],
         };
     }
@@ -50,7 +43,7 @@ class WabotSendText {
             const body = {
                 number: this.getNodeParameter('number', i),
                 type: 'text',
-                message: this.getNodeParameter('message', i)),
+                message: this.getNodeParameter('message', i),
             };
             const resp = await GenericFunctions_1.wabotRequest.call(this, 'POST', '/send', body);
             returnData.push(resp);

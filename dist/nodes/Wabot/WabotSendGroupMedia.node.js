@@ -20,7 +20,6 @@ class WabotSendGroupMedia {
                 { displayName: 'Media URL', name: 'mediaUrl', type: 'string', default: '', required: true },
                 { displayName: 'Filename', name: 'filename', type: 'string', default: '', required: true },
                 { displayName: 'Message', name: 'message', type: 'string', typeOptions: { rows: 3 }, default: '' },
-                {  type: 'string', default: '', required: true },
             ],
         };
     }
@@ -33,7 +32,7 @@ class WabotSendGroupMedia {
                 type: 'media',
                 media_url: this.getNodeParameter('mediaUrl', i),
                 filename: this.getNodeParameter('filename', i),
-                message: this.getNodeParameter('message', i)),
+                message: this.getNodeParameter('message', i),
             };
             const resp = await GenericFunctions_1.wabotRequest.call(this, 'POST', '/send_group', body);
             returnData.push(resp);

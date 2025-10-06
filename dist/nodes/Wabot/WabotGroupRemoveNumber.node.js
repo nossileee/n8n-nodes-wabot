@@ -18,7 +18,6 @@ class WabotGroupRemoveNumber {
             properties: [
                 { displayName: 'Group ID (without @g.us)', name: 'groupId', type: 'string', default: '', required: true },
                 { displayName: 'Number', name: 'number', type: 'string', default: '', required: true },
-                {  type: 'string', default: '', required: true },
             ],
         };
     }
@@ -29,7 +28,7 @@ class WabotGroupRemoveNumber {
             const body = {
                 group_id: `${this.getNodeParameter('groupId', i)}@g.us`,
                 action: 'remove',
-                number: this.getNodeParameter('number', i)),
+                number: this.getNodeParameter('number', i),
             };
             const resp = await GenericFunctions_1.wabotRequest.call(this, 'POST', '/group_action', body);
             returnData.push(resp);

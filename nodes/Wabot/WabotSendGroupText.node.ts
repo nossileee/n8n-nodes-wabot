@@ -17,7 +17,6 @@ export class WabotSendGroupText implements INodeType {
     properties: [
       { displayName: 'Group ID', name: 'groupId', type: 'string', default: '', required: true, description: 'Group JID (e.g. 1203630...@g.us)' },
       { displayName: 'Message', name: 'message', type: 'string', typeOptions: { rows: 4 }, default: '', required: true },
-      
     ],
   };
 
@@ -28,7 +27,7 @@ export class WabotSendGroupText implements INodeType {
       const body: any = {
         group_id: this.getNodeParameter('groupId', i) as string,
         type: 'text',
-        message: this.getNodeParameter('message', i) as string) as string,
+        message: this.getNodeParameter('message', i) as string,
       };
       const resp = await wabotRequest.call(this, 'POST', '/send_group', body);
       returnData.push(resp);

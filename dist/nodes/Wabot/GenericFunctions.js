@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.wabotRequest = wabotRequest;
 async function wabotRequest(method, endpoint, body = {}, qs = {}) {
     const credentials = await this.getCredentials('wabotApi');
-
     // Inject instance_id from credentials into body/qs if missing
     const inst = (credentials && (credentials.instanceId || credentials.instanceID || credentials.instance_id));
     if (inst) {
@@ -14,7 +13,6 @@ async function wabotRequest(method, endpoint, body = {}, qs = {}) {
             qs.instance_id = inst;
         }
     }
-
     const options = {
         method,
         url: endpoint,

@@ -17,7 +17,6 @@ export class WabotLabelAdd implements INodeType {
     properties: [
       { displayName: 'Label ID', name: 'labelId', type: 'string', default: '', required: true },
       { displayName: 'Number', name: 'number', type: 'string', default: '', required: true },
-      
     ],
   };
 
@@ -28,7 +27,7 @@ export class WabotLabelAdd implements INodeType {
       const body: any = {
         label_id: this.getNodeParameter('labelId', i) as string,
         action: 'add',
-        number: this.getNodeParameter('number', i) as string) as string,
+        number: this.getNodeParameter('number', i) as string,
       };
       const resp = await wabotRequest.call(this, 'POST', '/label_action', body);
       returnData.push(resp);
