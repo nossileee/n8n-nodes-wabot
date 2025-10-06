@@ -29,7 +29,7 @@ No painel do **n8n**:
 
 1. **Credentials → New → Wabot API**
 2. Preencha:
-   - **Base URL:** `https://api.wabot.com.br` (ou o seu endpoint)
+   - **Base URL:** `https://painel.wabot.com.br` (ou o seu endpoint)
    - **Access Token:** seu token
    - **Instance ID:** id da sua instância
 3. Clique em **Test** (deve retornar sucesso).
