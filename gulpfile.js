@@ -1,11 +1,19 @@
-// gulpfile.js
 const path = require('path');
-const { task, src, dest } = require('gulp');
+const { src, dest, task, parallel } = require('gulp');
 
-function copyAssets() {
-  const nodeSource = path.resolve('nodes', '**', '*.{png,svg}');
-  const nodeDestination = path.resolve('dist', 'nodes');
-  return src(nodeSource).pipe(dest(nodeDestination));
+// Copia ícones dos nodes -> dist/nodes
+function copyNodeAssets() {
+  const from = path.resolve('nodes', '**', '*.{png,svg}');
+  const to = path.resolve('dist', 'nodes');
+  return src(from, { allowEmpty: true }).pipe(dest(to));
 }
 
-task('copy-assets', copyAssets);
+// Copia ícones das credenciais -> dist/credentials
+function copyCredentialAssets() {
+  const from = path.resolve('credentials', '**', '*.{png,svg}');
+  const to = path.resolve('dist', 'credentials');
+  return src(from, { allowEmpty: true }).pipe(dest(to));
+}
+
+// Gera a task "copy-assets" (usada pelo seu npm run build)
+task('copy-assets', parallel(copyNodeAssets, copyCredentialAssets));

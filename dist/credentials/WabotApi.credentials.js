@@ -5,6 +5,7 @@ class WabotApi {
     constructor() {
         this.name = 'wabotApi';
         this.displayName = 'Wabot API';
+        this.iconUrl = 'file:wabot.png';
         this.documentationUrl = 'https://github.com/nossileee/n8n-nodes-wabot';
         this.properties = [
             {

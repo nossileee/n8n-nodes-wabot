@@ -7,6 +7,7 @@ import type {
 export class WabotApi implements ICredentialType {
   name = 'wabotApi';
   displayName = 'Wabot API';
+  iconUrl = 'file:wabot.png';
   documentationUrl = 'https://github.com/nossileee/n8n-nodes-wabot';
   properties: INodeProperties[] = [
     {
