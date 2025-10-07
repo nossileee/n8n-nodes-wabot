@@ -7,7 +7,7 @@ class WabotGroupRemoveNumber {
         this.description = {
             displayName: 'Wabot: Group Remove Number',
             name: 'wabotGroupRemoveNumber',
-            icon: 'file:wabot.png',
+            icon: { light: 'file:wabot.png', dark: 'file:wabot.png', },
             group: ['transform'],
             version: 1,
             description: 'Remove a phone number from a WhatsApp group.',

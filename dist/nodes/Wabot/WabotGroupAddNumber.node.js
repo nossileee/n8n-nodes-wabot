@@ -7,7 +7,7 @@ class WabotGroupAddNumber {
         this.description = {
             displayName: 'Wabot: Group Add Number',
             name: 'wabotGroupAddNumber',
-            icon: 'file:wabot.png',
+            icon: { light: 'file:wabot.png', dark: 'file:wabot.png', },
             group: ['transform'],
             version: 1,
             description: 'Add a phone number to a WhatsApp group.',

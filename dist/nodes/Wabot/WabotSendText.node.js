@@ -7,7 +7,7 @@ class WabotSendText {
         this.description = {
             displayName: 'Wabot: Send Text',
             name: 'wabotSendText',
-            icon: 'file:wabot.png',
+            icon: { light: 'file:wabot.png', dark: 'file:wabot.png', },
             group: ['transform'],
             version: 1,
             description: 'Send a text message to a number.',

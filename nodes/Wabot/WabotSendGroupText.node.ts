@@ -6,7 +6,7 @@ export class WabotSendGroupText implements INodeType {
   description: INodeTypeDescription = {
     displayName: 'Wabot: Send Group Text',
     name: 'wabotSendGroupText',
-    icon: 'file:wabot.png',
+    icon: { light: 'file:wabot.png', dark:  'file:wabot.png', },
     group: ['transform'],
     version: 1,
     description: 'Send text to a WhatsApp group.',

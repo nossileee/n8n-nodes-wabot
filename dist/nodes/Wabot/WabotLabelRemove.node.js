@@ -7,7 +7,7 @@ class WabotLabelRemove {
         this.description = {
             displayName: 'Wabot: Label Remove',
             name: 'wabotLabelRemove',
-            icon: 'file:wabot.png',
+            icon: { light: 'file:wabot.png', dark: 'file:wabot.png', },
             group: ['transform'],
             version: 1,
             description: 'Remove a WhatsApp Business label from a number.',

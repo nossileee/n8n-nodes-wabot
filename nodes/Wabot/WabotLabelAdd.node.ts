@@ -6,7 +6,7 @@ export class WabotLabelAdd implements INodeType {
   description: INodeTypeDescription = {
     displayName: 'Wabot: Label Add',
     name: 'wabotLabelAdd',
-    icon: 'file:wabot.png',
+    icon: { light: 'file:wabot.png', dark:  'file:wabot.png', },
     group: ['transform'],
     version: 1,
     description: 'Add a WhatsApp Business label to a number.',

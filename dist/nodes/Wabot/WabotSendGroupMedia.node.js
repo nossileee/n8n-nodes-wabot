@@ -7,7 +7,7 @@ class WabotSendGroupMedia {
         this.description = {
             displayName: 'Wabot: Send Group Media',
             name: 'wabotSendGroupMedia',
-            icon: 'file:wabot.png',
+            icon: { light: 'file:wabot.png', dark: 'file:wabot.png', },
             group: ['transform'],
             version: 1,
             description: 'Send media/file to a WhatsApp group.',
