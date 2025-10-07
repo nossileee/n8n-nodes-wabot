@@ -1,4 +1,4 @@
-import type { IExecuteFunctions } from 'n8n-workflow';
+import type { IExecuteFunctions, INodeExecutionData } from 'n8n-workflow';
 import type { INodeType, INodeTypeDescription } from 'n8n-workflow';
 import { wabotRequest } from './GenericFunctions';
 
@@ -6,7 +6,7 @@ export class WabotSendText implements INodeType {
   description: INodeTypeDescription = {
     displayName: 'Wabot: Send Text',
     name: 'wabotSendText',
-    icon: 'file:wabot.svg',
+    icon: 'file:wabot.png',
     group: ['transform'],
     version: 1,
     description: 'Send a text message to a number.',
@@ -35,18 +35,18 @@ export class WabotSendText implements INodeType {
     ],
   };
 
-  async execute(this: IExecuteFunctions) {
+  async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
     const items = this.getInputData();
-    const returnData: any[] = [];
+    const returnData: INodeExecutionData[] = [];
     for (let i = 0; i < items.length; i++) {
-      const body: any = {
+      const body = {
         number: this.getNodeParameter('number', i) as string,
         type: 'text',
         message: this.getNodeParameter('message', i) as string,
       };
-      const resp = await wabotRequest.call(this, 'POST', '/send', body);
-      returnData.push(resp);
+      const response = await wabotRequest.call(this, 'POST', '/send', body, {});
+      returnData.push({ json: response });
     }
-    return [returnData.map(d => ({ json: d }))];
+    return [returnData];
   }
 }

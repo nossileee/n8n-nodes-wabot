@@ -1,7 +1,7 @@
 {
   "name": "n8n-nodes-wabot",
-  "version": "0.1.1",
-  "description": "Wabot Community Nodes for n8n — credentials + action nodes (send text, media, groups, labels, contacts).",
+  "version": "0.2.0",
+  "description": "Wabot Community Nodes for n8n.",
   "keywords": [
     "n8n",
     "nodes",
@@ -9,25 +9,26 @@
     "whatsapp",
     "n8n-community-node-package"
   ],
-  "homepage": "https://github.com/webinfinitebr/n8n-nodes-wabot",
+  "homepage": "https://github.com/nossileee/n8n-nodes-wabot",
   "license": "MIT",
   "author": "Web Infinite (Élisson)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && gulp copy-assets",
     "prepublishOnly": "npm run build",
     "clean": "rimraf dist || true",
     "lint": "echo \"No lint configured\""
   },
   "devDependencies": {
     "@types/node": "^18.19.0",
-    "typescript": "^5.4.0",
-    "rimraf": "^5.0.0"
+    "gulp": "^5.0.0",
+    "rimraf": "^5.0.0",
+    "typescript": "^5.4.0"
   },
   "dependencies": {
-    "n8n-workflow": "^1.47.0",
-    "n8n-core": "^1.47.0"
+    "n8n-core": "*",
+    "n8n-workflow": "*"
   },
   "n8n": {
     "credentials": [
@@ -48,17 +49,14 @@
   },
   "files": [
     "dist",
-    "icons",
     "README.md",
-    "LICENSE",
-    "package.json",
-    "tsconfig.json"
+    "LICENSE"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/webinfinitebr/n8n-nodes-wabot.git"
+    "url": "git+https://github.com/nossileee/n8n-nodes-wabot.git"
   },
   "bugs": {
-    "url": "https://github.com/webinfinitebr/n8n-nodes-wabot/issues"
+    "url": "https://github.com/nossileee/n8n-nodes-wabot/issues"
   }
 }

@@ -5,7 +5,7 @@ class WabotApi {
     constructor() {
         this.name = 'wabotApi';
         this.displayName = 'Wabot API';
-        this.documentationUrl = '';
+        this.documentationUrl = 'https://github.com/nossileee/n8n-nodes-wabot';
         this.properties = [
             {
                 displayName: 'Base URL',
@@ -16,13 +16,13 @@ class WabotApi {
                 description: 'API base URL for Wabot',
             },
             {
-                displayName: 'Access Token (Bearer)',
+                displayName: 'Access Token',
                 name: 'accessToken',
                 type: 'string',
                 typeOptions: { password: true },
                 default: '',
                 required: true,
-                description: 'Your Wabot API access token',
+                description: 'Your Wabot API access token (used as username for Basic Auth)',
             },
             {
                 displayName: 'Instance ID',
@@ -30,24 +30,17 @@ class WabotApi {
                 type: 'string',
                 default: '',
                 required: true,
-                description: 'Your Wabot Instance ID (WhatsApp session identifier)',
+                description: 'Your Wabot Instance ID (used as password for Basic Auth)',
             },
         ];
-        this.authenticate = {
-            type: 'generic',
-            properties: {
-                headers: {
-                    // use expressão do n8n começando com "=" para montar o Bearer:
-                    Authorization: '={{"Bearer " + $credentials.accessToken}}',
-                    'Content-Type': 'application/json',
-                },
-            },
-        };
         this.test = {
             request: {
                 baseURL: '={{$credentials.baseUrl}}',
                 url: '/check_instance',
                 method: 'GET',
+                headers: {
+                    'Authorization': '=Basic {{$credentials.accessToken + ":" + $credentials.instanceId).toString("base64")}}',
+                },
                 qs: {
                     instance_id: '={{$credentials.instanceId}}',
                 },

@@ -7,7 +7,7 @@ class WabotSendText {
         this.description = {
             displayName: 'Wabot: Send Text',
             name: 'wabotSendText',
-            icon: 'file:wabot.svg',
+            icon: 'file:wabot.png',
             group: ['transform'],
             version: 1,
             description: 'Send a text message to a number.',
@@ -45,10 +45,10 @@ class WabotSendText {
                 type: 'text',
                 message: this.getNodeParameter('message', i),
             };
-            const resp = await GenericFunctions_1.wabotRequest.call(this, 'POST', '/send', body);
-            returnData.push(resp);
+            const response = await GenericFunctions_1.wabotRequest.call(this, 'POST', '/send', body, {});
+            returnData.push({ json: response });
         }
-        return [returnData.map(d => ({ json: d }))];
+        return [returnData];
     }
 }
 exports.WabotSendText = WabotSendText;

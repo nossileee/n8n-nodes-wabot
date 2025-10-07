@@ -7,7 +7,7 @@ class WabotLabelAdd {
         this.description = {
             displayName: 'Wabot: Label Add',
             name: 'wabotLabelAdd',
-            icon: 'file:wabot.svg',
+            icon: 'file:wabot.png',
             group: ['transform'],
             version: 1,
             description: 'Add a WhatsApp Business label to a number.',

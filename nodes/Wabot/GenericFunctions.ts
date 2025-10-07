@@ -1,34 +1,45 @@
-import type { IExecuteFunctions, ILoadOptionsFunctions, IDataObject } from 'n8n-workflow';
+import type {
+  IExecuteFunctions,
+  ILoadOptionsFunctions,
+  IDataObject,
+  IHttpRequestOptions,
+  IHttpRequestMethods,
+} from 'n8n-workflow';
 
 export async function wabotRequest(
   this: IExecuteFunctions | ILoadOptionsFunctions,
-  method: string,
+  method: IHttpRequestMethods,
   endpoint: string,
   body: IDataObject = {},
   qs: IDataObject = {},
 ) {
   const credentials = await this.getCredentials('wabotApi');
+  const accessToken = credentials.accessToken as string;
+  const instanceId = credentials.instanceId as string;
+  const baseUrl = credentials.baseUrl as string;
 
-  // Inject instance_id from credentials into body/qs if missing
-  const inst = (credentials && (credentials.instanceId || credentials.instanceID || credentials.instance_id)) as string | undefined;
-  if (inst) {
-    if (body && typeof body === 'object' && body.instance_id == null) {
-      (body as any).instance_id = inst;
+  const basicAuth = Buffer.from(`${accessToken}:${instanceId}`).toString('base64');
+
+  if (method === 'POST' || method === 'PUT' || method === 'PATCH') {
+    if (!body.instance_id) {
+      body.instance_id = instanceId;
     }
-    if (qs && typeof qs === 'object' && qs.instance_id == null) {
-      (qs as any).instance_id = inst;
+  } else if (method === 'GET' || method === 'DELETE') {
+    if (!qs.instance_id) {
+      qs.instance_id = instanceId;
     }
   }
 
-  const options = {
+  const options: IHttpRequestOptions = {
+    headers: {
+      'Authorization': `Basic ${basicAuth}`,
+    },
     method,
-    url: endpoint,
-    qs,
     body,
+    qs,
+    url: `${baseUrl}${endpoint}`,
     json: true,
-    baseURL: (credentials && typeof credentials.baseUrl === 'string') ? credentials.baseUrl : undefined,
-  } as unknown as IDataObject;
-
-  // @ts-ignore
-  return await this.helpers.httpRequestWithAuthentication.call(this, 'wabotApi', options);
+  };
+  
+  return await this.helpers.request(options);
 }

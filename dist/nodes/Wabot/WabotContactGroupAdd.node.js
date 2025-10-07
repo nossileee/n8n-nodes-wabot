@@ -7,7 +7,7 @@ class WabotContactGroupAdd {
         this.description = {
             displayName: 'Wabot: Contact Group Add',
             name: 'wabotContactGroupAdd',
-            icon: 'file:wabot.svg',
+            icon: 'file:wabot.png',
             group: ['transform'],
             version: 1,
             description: 'Add a contact to a Wabot contact group.',

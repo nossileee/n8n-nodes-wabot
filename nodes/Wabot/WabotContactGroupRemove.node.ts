@@ -6,7 +6,7 @@ export class WabotContactGroupRemove implements INodeType {
   description: INodeTypeDescription = {
     displayName: 'Wabot: Contact Group Remove',
     name: 'wabotContactGroupRemove',
-    icon: 'file:wabot.svg',
+    icon: 'file:wabot.png',
     group: ['transform'],
     version: 1,
     description: 'Remove a contact from a Wabot contact group.',

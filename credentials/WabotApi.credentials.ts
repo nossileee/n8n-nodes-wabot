@@ -1,14 +1,13 @@
 import type {
   ICredentialType,
   INodeProperties,
-  IAuthenticateGeneric,
   ICredentialTestRequest,
 } from 'n8n-workflow';
 
 export class WabotApi implements ICredentialType {
   name = 'wabotApi';
   displayName = 'Wabot API';
-  documentationUrl = '';
+  documentationUrl = 'https://github.com/nossileee/n8n-nodes-wabot';
   properties: INodeProperties[] = [
     {
       displayName: 'Base URL',
@@ -19,13 +18,13 @@ export class WabotApi implements ICredentialType {
       description: 'API base URL for Wabot',
     },
     {
-      displayName: 'Access Token (Bearer)',
+      displayName: 'Access Token',
       name: 'accessToken',
       type: 'string',
       typeOptions: { password: true },
       default: '',
       required: true,
-      description: 'Your Wabot API access token',
+      description: 'Your Wabot API access token (used as username for Basic Auth)',
     },
     {
       displayName: 'Instance ID',
@@ -33,30 +32,21 @@ export class WabotApi implements ICredentialType {
       type: 'string',
       default: '',
       required: true,
-      description: 'Your Wabot Instance ID (WhatsApp session identifier)',
+      description: 'Your Wabot Instance ID (used as password for Basic Auth)',
     },
   ];
 
-  authenticate: IAuthenticateGeneric = {
-  type: 'generic',
-  properties: {
-    headers: {
-      // use expressão do n8n começando com "=" para montar o Bearer:
-      Authorization: '={{"Bearer " + $credentials.accessToken}}',
-      'Content-Type': 'application/json',
-    },
-    },
-  };
-
   test: ICredentialTestRequest = {
-  request: {
-    baseURL: '={{$credentials.baseUrl}}',
-    url: '/check_instance',
-    method: 'GET',
-    qs: {
-      instance_id: '={{$credentials.instanceId}}',
+    request: {
+      baseURL: '={{$credentials.baseUrl}}',
+      url: '/check_instance',
+      method: 'GET',     
+      headers: {
+        'Authorization': '=Basic {{$credentials.accessToken + ":" + $credentials.instanceId).toString("base64")}}',
+      },
+      qs: {
+        instance_id: '={{$credentials.instanceId}}',
+      },
     },
-  },
   };
-
 }

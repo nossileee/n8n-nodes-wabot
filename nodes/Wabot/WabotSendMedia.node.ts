@@ -6,7 +6,7 @@ export class WabotSendMedia implements INodeType {
   description: INodeTypeDescription = {
     displayName: 'Wabot: Send Media',
     name: 'wabotSendMedia',
-    icon: 'file:wabot.svg',
+    icon: 'file:wabot.png',
     group: ['transform'],
     version: 1,
     description: 'Send media/file to a number.',

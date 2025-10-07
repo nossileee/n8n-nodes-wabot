@@ -6,7 +6,7 @@ export class WabotGroupRemoveNumber implements INodeType {
   description: INodeTypeDescription = {
     displayName: 'Wabot: Group Remove Number',
     name: 'wabotGroupRemoveNumber',
-    icon: 'file:wabot.svg',
+    icon: 'file:wabot.png',
     group: ['transform'],
     version: 1,
     description: 'Remove a phone number from a WhatsApp group.',
