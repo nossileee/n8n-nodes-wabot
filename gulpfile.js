@@ -1,12 +1,11 @@
 // gulpfile.js
-const { task, src, dest } = require('gulp');
 const path = require('path');
+const { task, src, dest } = require('gulp');
 
-// Esta tarefa copia a pasta 'icons' para dentro da pasta 'dist'
-function copyIcons() {
-  const source = path.resolve('icons', 'wabot.png'); // Caminho do seu ícone
-  const destination = path.resolve('dist', 'icons'); // Pasta de destino
-  return src(source).pipe(dest(destination));
+function copyAssets() {
+  const nodeSource = path.resolve('nodes', '**', '*.{png,svg}');
+  const nodeDestination = path.resolve('dist', 'nodes');
+  return src(nodeSource).pipe(dest(nodeDestination));
 }
 
-task('copy-assets', copyIcons);
+task('copy-assets', copyAssets);

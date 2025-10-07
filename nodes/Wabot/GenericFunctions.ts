@@ -18,27 +18,20 @@ export async function wabotRequest(
   const instanceId = credentials.instanceId as string;
   const baseUrl = credentials.baseUrl as string;
 
-  const basicAuth = Buffer.from(`${accessToken}:${instanceId}`).toString('base64');
-
-  if (method === 'POST' || method === 'PUT' || method === 'PATCH') {
-    if (!body.instance_id) {
-      body.instance_id = instanceId;
-    }
-  } else if (method === 'GET' || method === 'DELETE') {
-    if (!qs.instance_id) {
-      qs.instance_id = instanceId;
-    }
-  }
+   body.access_token = accessToken;
+  body.instance_id = instanceId;
+  qs.access_token = accessToken;
+  qs.instance_id = instanceId;
 
   const options: IHttpRequestOptions = {
     headers: {
-      'Authorization': `Basic ${basicAuth}`,
+      'Content-Type': 'application/json',
     },
     method,
     body,
     qs,
     url: `${baseUrl}${endpoint}`,
-    json: true,
+    json: true,  
   };
   
   return await this.helpers.request(options);

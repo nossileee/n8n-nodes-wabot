@@ -6,20 +6,13 @@ async function wabotRequest(method, endpoint, body = {}, qs = {}) {
     const accessToken = credentials.accessToken;
     const instanceId = credentials.instanceId;
     const baseUrl = credentials.baseUrl;
-    const basicAuth = Buffer.from(`${accessToken}:${instanceId}`).toString('base64');
-    if (method === 'POST' || method === 'PUT' || method === 'PATCH') {
-        if (!body.instance_id) {
-            body.instance_id = instanceId;
-        }
-    }
-    else if (method === 'GET' || method === 'DELETE') {
-        if (!qs.instance_id) {
-            qs.instance_id = instanceId;
-        }
-    }
+    body.access_token = accessToken;
+    body.instance_id = instanceId;
+    qs.access_token = accessToken;
+    qs.instance_id = instanceId;
     const options = {
         headers: {
-            'Authorization': `Basic ${basicAuth}`,
+            'Content-Type': 'application/json',
         },
         method,
         body,

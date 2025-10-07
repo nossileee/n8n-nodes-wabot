@@ -14,8 +14,6 @@ export class WabotApi implements ICredentialType {
       name: 'baseUrl',
       type: 'string',
       default: 'https://painel.wabot.app.br/api',
-      placeholder: 'https://painel.wabot.app.br/api',
-      description: 'API base URL for Wabot',
     },
     {
       displayName: 'Access Token',
@@ -24,7 +22,6 @@ export class WabotApi implements ICredentialType {
       typeOptions: { password: true },
       default: '',
       required: true,
-      description: 'Your Wabot API access token (used as username for Basic Auth)',
     },
     {
       displayName: 'Instance ID',
@@ -32,7 +29,6 @@ export class WabotApi implements ICredentialType {
       type: 'string',
       default: '',
       required: true,
-      description: 'Your Wabot Instance ID (used as password for Basic Auth)',
     },
   ];
 
@@ -40,12 +36,10 @@ export class WabotApi implements ICredentialType {
     request: {
       baseURL: '={{$credentials.baseUrl}}',
       url: '/check_instance',
-      method: 'GET',     
-      headers: {
-        'Authorization': '=Basic {{$credentials.accessToken + ":" + $credentials.instanceId).toString("base64")}}',
-      },
+      method: 'GET',
       qs: {
         instance_id: '={{$credentials.instanceId}}',
+        access_token: '={{$credentials.accessToken}}',
       },
     },
   };

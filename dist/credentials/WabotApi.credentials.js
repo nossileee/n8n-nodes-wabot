@@ -12,8 +12,6 @@ class WabotApi {
                 name: 'baseUrl',
                 type: 'string',
                 default: 'https://painel.wabot.app.br/api',
-                placeholder: 'https://painel.wabot.app.br/api',
-                description: 'API base URL for Wabot',
             },
             {
                 displayName: 'Access Token',
@@ -22,7 +20,6 @@ class WabotApi {
                 typeOptions: { password: true },
                 default: '',
                 required: true,
-                description: 'Your Wabot API access token (used as username for Basic Auth)',
             },
             {
                 displayName: 'Instance ID',
@@ -30,7 +27,6 @@ class WabotApi {
                 type: 'string',
                 default: '',
                 required: true,
-                description: 'Your Wabot Instance ID (used as password for Basic Auth)',
             },
         ];
         this.test = {
@@ -38,11 +34,9 @@ class WabotApi {
                 baseURL: '={{$credentials.baseUrl}}',
                 url: '/check_instance',
                 method: 'GET',
-                headers: {
-                    'Authorization': '=Basic {{$credentials.accessToken + ":" + $credentials.instanceId).toString("base64")}}',
-                },
                 qs: {
                     instance_id: '={{$credentials.instanceId}}',
+                    access_token: '={{$credentials.accessToken}}',
                 },
             },
         };
