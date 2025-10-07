@@ -3,10 +3,10 @@
 Community Nodes do **Wabot** para **n8n** (self-hosted). Inclui:
 - **Credencial:** Wabot API (baseUrl, accessToken, instanceId)
 - **10 nós** prontos: Send Text, Send Media, Send Group Text, Send Group Media, Group Add Number, Group Remove Number, Contact Group Add/Remove, Label Add/Remove
-- **Ícone customizado:** `icons/wabot.svg`
+- **Ícone customizado:** `icons/wabot.png`
 - **Sem Instance ID nos nós** — o `instance_id` é injetado automaticamente a partir das credenciais.
 
-> Repositório oficial: https://github.com/webinfinitebr/n8n-nodes-wabot
+> Repositório oficial: https://github.com/nossileeee/n8n-nodes-wabot
 
 ---
 
@@ -17,7 +17,7 @@ No painel do **n8n**:
 2. Clique em **Install from GitHub repository**
 3. Informe o repositório:
    ```
-   https://github.com/webinfinitebr/n8n-nodes-wabot
+   https://github.com/nossileee/n8n-nodes-wabot
    ```
 4. Confirme e aguarde o restart.
 
